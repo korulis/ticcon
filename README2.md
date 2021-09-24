@@ -1,6 +1,10 @@
 # Ticcon
 
-s
+npm init react-app ticcon --template typescript
+npm init react-app ticcon --typescript
+yarn create react-app ticcon --template typescript
+yarn create react-app my-app
+--use-npm
 
 ---
 
