@@ -3,7 +3,7 @@
 - Generated using:
 
 ```bash
-npx create-react-app ticcon --typescript --use-npm
+npx create-react-app ticcon --template typescript --use-npm
 ```
 
 ---
