@@ -4,6 +4,7 @@ import {
     Route
 } from "react-router-dom";
 import App from "./App";
+import Game from "./Game";
 // import Game from "./Game";
 
 const Routes: React.FC = () => {
@@ -11,14 +12,12 @@ const Routes: React.FC = () => {
         <div>
             <Router>
                 <div>
-
                     <Switch>
                         <Route path="/app">
                             <App />
                         </Route>
                         <Route path="/game">
-                            <App />
-                            {/* <Game /> */}
+                            <Game />
                         </Route>
                         <Route path="/">
                             <App />
