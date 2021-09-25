@@ -6,7 +6,7 @@ import {
 import App from "./App";
 // import Game from "./Game";
 
-function Routes() {
+const Routes: React.FC = () => {
     return (
         <div>
             <Router>
