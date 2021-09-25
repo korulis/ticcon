@@ -10,8 +10,8 @@ npx create-react-app ticcon --template typescript --use-npm
 
 ## TODO
 
+- ~~Add typescript~~
 - Add redux
-- Add typescript
 - Dockerise
 - REST requests
 - Use flexbox
