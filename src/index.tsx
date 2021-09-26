@@ -6,12 +6,16 @@ import App from './App';
 import { commonStore } from './state';
 import Square from './Square';
 import Board from './Board';
+import Game from './Game';
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={commonStore}>
-            <Board/>
+            <div>
+                <Game/>
+                <Board/>
             {/* <App /> */}
+            </div>
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')

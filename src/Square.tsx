@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './Game.css';
-import SquareValue from './SquareValue';
 import { actionCreators } from './state';
 import { RootState } from './state/reducers';
 
@@ -17,7 +16,6 @@ const Square: React.FC<SquareProps> = (props: SquareProps) => {
     const dispatch = useDispatch();
 
     const { clickSquare } = bindActionCreators(actionCreators, dispatch)
-
 
     return (
         <button
