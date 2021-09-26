@@ -18,4 +18,5 @@ const Square: React.FC<SquareProps> = (props: SquareProps) => {
         </button>
     );
 }
+
 export default Square;

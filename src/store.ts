@@ -1,15 +1,28 @@
-import { Dispatch } from 'react';
-import { createStore, applyMiddleware, Action, Store, StoreEnhancer } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers/rootReducer';
+// import { AnyAction, Dispatch } from 'redux';
+// import { createStore, applyMiddleware, Store, StoreEnhancer } from 'redux';
+// import thunk from 'redux-thunk';
+// import rootReducer from './reducers/rootReducer';
+// const configureStore = (initialState = {}): Store<unknown, AnyAction> => {
+//     const mid: StoreEnhancer<{ dispatch: Dispatch<AnyAction> }, unknown> = applyMiddleware(thunk);
+//     return createStore(
+//         rootReducer,
+//         initialState,
+//         mid
+//     );
+// }
+// export default configureStore
 
-const configureStore = (initialState = {}): Store<unknown, Action> => {
-    const mid: StoreEnhancer<{ dispatch: Dispatch<Action> }, unknown> = applyMiddleware(thunk);
-    return createStore(
-        rootReducer,
-        initialState,
-        mid
-    );
-}
+import { applyMiddleware, createStore } from "redux";
+import thunk from "redux-thunk";
+import rootReducer from "./reducers/rootReducer";
 
-export default configureStore
+const store = createStore(
+    rootReducer,
+    {},
+    applyMiddleware(thunk)
+);
+
+export default store
+
+
+
