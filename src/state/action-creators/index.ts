@@ -1,5 +1,4 @@
 import { Dispatch } from "redux"
-import Player from "../../Player"
 import { BankActionType, SquareActionType } from "../action-types"
 import { BankAction, SquareAction } from "../actions/index"
 
