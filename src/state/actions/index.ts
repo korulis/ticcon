@@ -1,17 +1,24 @@
-import { ActionType } from "../action-types/index"
+import Player from "../../Player";
+import { BankActionType,SquareActionType } from "../action-types/index"
+
+export type SquareAction = {
+    type: SquareActionType.CLICK,
+    index: number,
+    player: Player
+};
 
 interface DepositAction {
-    type: ActionType.DEPOSIT,
+    type: BankActionType.DEPOSIT,
     payload: number
 }
 
 interface WithdrawAction {
-    type: ActionType.WITHDRAW,
+    type: BankActionType.WITHDRAW,
     payload: number
 }
 
 interface BankruptAction {
-    type: ActionType.BANKRUPT
+    type: BankActionType.BANKRUPT
 }
 
-export type Action = DepositAction | WithdrawAction | BankruptAction;
+export type BankAction = DepositAction | WithdrawAction | BankruptAction;

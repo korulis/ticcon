@@ -1,23 +1,11 @@
 import React from 'react';
 import './Game.css';
 import Square from './Square';
-import SquareValue from './SquareValue';
 
-interface BoardProps {
-    squares: SquareValue[];
-    onClick(i: number): void;
-
-}
-
-class Board extends React.Component<BoardProps> {
-    constructor(props: BoardProps) {
-        super(props);
-    }
+class Board extends React.Component {
 
     renderSquare(i: number): JSX.Element {
         return <Square
-            value={this.props.squares[i]}
-            onClick={() => this.props.onClick(i)}
         />;
     }
 

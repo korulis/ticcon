@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 import bankReducer from "./bankReducer"
+import squareReducer from "./squareReducer";
 
 
 const reducers = combineReducers({
-    bank: bankReducer
+    bank: bankReducer,
+    square: squareReducer
 })
 
 export default reducers
