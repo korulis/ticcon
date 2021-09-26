@@ -1,12 +1,12 @@
 import { Dispatch } from "redux"
+import Player from "../../Player"
 import { BankActionType, SquareActionType } from "../action-types"
 import { BankAction, SquareAction } from "../actions/index"
-import Player from "../../Player";
 
-export const clickSquare = (player: Player) => {
+export const clickSquare = (index: number) => {
     return (dispatch: Dispatch<SquareAction>): void => {
         dispatch({
-            type: SquareActionType.CLICK, player: player, index: 0
+            type: SquareActionType.CLICK, index: index
         })
     }
 }

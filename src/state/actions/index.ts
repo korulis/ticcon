@@ -1,10 +1,8 @@
-import Player from "../../Player";
 import { BankActionType,SquareActionType } from "../action-types/index"
 
 export type SquareAction = {
     type: SquareActionType.CLICK,
-    index: number,
-    player: Player
+    index: number
 };
 
 interface DepositAction {

@@ -6,10 +6,14 @@ import SquareValue from './SquareValue';
 import { actionCreators } from './state';
 import { RootState } from './state/reducers';
 
-const Square: React.FC = () => {
+interface SquareProps {
+    index: number
+}
 
-    const state = useSelector((state: RootState) => state.square)
-    
+const Square: React.FC<SquareProps> = (props: SquareProps) => {
+
+    const state = useSelector((state: RootState) => state.game)
+
     const dispatch = useDispatch();
 
     const { clickSquare } = bindActionCreators(actionCreators, dispatch)
@@ -18,7 +22,7 @@ const Square: React.FC = () => {
     return (
         <button
             className="square"
-            onClick={()=>clickSquare('X')}
+            onClick={() => clickSquare(props.index,)}
         >
             {state.squareValue}
         </button>
