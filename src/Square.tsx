@@ -11,17 +11,16 @@ interface SquareProps {
 
 const Square: React.FC<SquareProps> = (props: SquareProps) => {
 
-    const state = useSelector((state: RootState) => state.game)
+    const state = useSelector((state: RootState) => state.game.current.board)
 
     const dispatch = useDispatch();
-
     const { clickSquare } = bindActionCreators(actionCreators, dispatch)
 
     return (
         <button
             className="square"
             onClick={() => clickSquare(props.index)}>
-            {state.current.board[props.index]}
+            {state[props.index]}
         </button>
     );
 }

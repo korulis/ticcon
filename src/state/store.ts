@@ -4,6 +4,6 @@ import reducers from "./reducers";
 
 export const commonStore = createStore(
     reducers,
-    {bank:0},
+    {},
     applyMiddleware(thunk)
 )
