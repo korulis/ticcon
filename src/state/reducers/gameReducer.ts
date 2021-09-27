@@ -4,42 +4,44 @@ import Player from "../../Player";
 import SquareValue from "../../SquareValue";
 import { GameActionType } from "../action-types";
 import { GameAction } from "../actions";
+import { cloneDeep } from "lodash";
+
+type History = Move[];
 
 interface GameState {
-    winner: Player | null;
-    board: SquareValue[];
-    nextPlayer: Player;
-    history: Move[];
-    stepNumber: number;
+    current: Move;
+    history: History;
 }
 
-const initialState: GameState = {
+const initialMove: Move = {
     board: Array<SquareValue>(9).fill(null),
     nextPlayer: 'X',
     winner: null,
-    history: [],
     stepNumber: 0
+};
+
+const initialState: GameState = {
+    current: initialMove,
+    history: [initialMove],
 };
 
 const gameReducer = (state: GameState = initialState, action: GameAction): GameState => {
     switch (action.type) {
         case GameActionType.SQUARE_CLICK:
-            const oldSquares = state.board;
-            const index = action.index;
-            if (oldSquares[index] === null && !state.winner) {
-                const newHistory =  [...state.history.slice(), { board: state.board.slice() }] ;
-                const newStepNumber = history.length;
-                const newSquare = state.nextPlayer;
-                const newSquares: SquareValue[] = [...oldSquares.slice(0, index), newSquare, ...oldSquares.slice(index + 1)];
-                const oldNextPlayer = state.nextPlayer;
-                const newNextPlayer: Player = oldNextPlayer == 'X' ? 'O' : 'X'
-                const newWinner = calculateWinner(newSquares)
+            const i = action.index;
+            const oldBoard = state.current.board;
+            const oldWinner = state.current.winner;
+            if (oldBoard[i] === null && !oldWinner) {
+                const newStepNumber = state.current.stepNumber + 1;
+                const newSquare = state.current.nextPlayer;
+                const newBoard: SquareValue[] = [...oldBoard.slice(0, i), newSquare, ...oldBoard.slice(i + 1)];
+                const newNextPlayer: Player = state.current.nextPlayer == 'X' ? 'O' : 'X'
+                const newWinner = calculateWinner(newBoard)
+                const newCurrent: Move = { board: newBoard, winner: newWinner, stepNumber: newStepNumber, nextPlayer: newNextPlayer }
+                const newHistory: History = cloneDeep(state.history.slice(0, newStepNumber).concat(newCurrent))
                 const newState: GameState = {
                     ...state,
-                    board: newSquares,
-                    nextPlayer: newNextPlayer,
-                    winner: newWinner,
-                    stepNumber: newStepNumber,
+                    current: newCurrent,
                     history: newHistory
                 };
                 return newState
@@ -47,12 +49,10 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
             return state;
         case GameActionType.MOVE_CLICK:
             const step = action.index;
-            const currentPlayer = (step % 2) === 0 ? 'X' : 'O';
 
             const newState: GameState = {
                 ...state,
-                nextPlayer: currentPlayer,
-                stepNumber: step,
+                current: state.history[step]
             };
 
             return newState;
