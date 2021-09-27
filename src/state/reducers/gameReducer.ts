@@ -7,15 +7,15 @@ import { GameAction } from "../actions";
 
 interface GameState {
     winner: Player | null;
-    board: SquareValue[],
-    currentPlayer: Player,
-    history: Move[],
-    stepNumber: number,
+    board: SquareValue[];
+    nextPlayer: Player;
+    history: Move[];
+    stepNumber: number;
 }
 
 const initialState: GameState = {
     board: Array<SquareValue>(9).fill(null),
-    currentPlayer: 'X',
+    nextPlayer: 'X',
     winner: null,
     history: [],
     stepNumber: 0
@@ -27,17 +27,17 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
             const oldSquares = state.board;
             const index = action.index;
             if (oldSquares[index] === null && !state.winner) {
-                const newHistory = [...state.history.slice(), { squares: state.board.slice() }];
-                const newStepNumber = state.stepNumber + 1;
-                const newSquare = state.currentPlayer;
+                const newHistory =  [...state.history.slice(), { board: state.board.slice() }] ;
+                const newStepNumber = history.length;
+                const newSquare = state.nextPlayer;
                 const newSquares: SquareValue[] = [...oldSquares.slice(0, index), newSquare, ...oldSquares.slice(index + 1)];
-                const oldPlayer = state.currentPlayer;
-                const newPlayer: Player = oldPlayer == 'X' ? 'O' : 'X'
+                const oldNextPlayer = state.nextPlayer;
+                const newNextPlayer: Player = oldNextPlayer == 'X' ? 'O' : 'X'
                 const newWinner = calculateWinner(newSquares)
                 const newState: GameState = {
                     ...state,
                     board: newSquares,
-                    currentPlayer: newPlayer,
+                    nextPlayer: newNextPlayer,
                     winner: newWinner,
                     stepNumber: newStepNumber,
                     history: newHistory
@@ -45,6 +45,17 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
                 return newState
             }
             return state;
+        case GameActionType.MOVE_CLICK:
+            const step = action.index;
+            const currentPlayer = (step % 2) === 0 ? 'X' : 'O';
+
+            const newState: GameState = {
+                ...state,
+                nextPlayer: currentPlayer,
+                stepNumber: step,
+            };
+
+            return newState;
         default:
             return state;
     }

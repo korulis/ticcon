@@ -10,6 +10,14 @@ export const clickSquare = (index: number) => {
     }
 }
 
+export const jumpTo = (index: number) => {
+    return (dispatch: Dispatch<GameAction>): void => {
+        dispatch({
+            type: GameActionType.MOVE_CLICK, index: index
+        })
+    }
+}
+
 export const depositMoney = (amount: number) => {
     return (dispatch: Dispatch<BankAction>): void => {
         dispatch({

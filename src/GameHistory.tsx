@@ -1,18 +1,30 @@
-import React from 'react';
 import Move from "./Move";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import './Game.css';
+import { actionCreators } from './state';
+import { RootState } from './state/reducers';
 
 interface GameHistoryProps {
-    moves: Move[];
+    history: Move[];
     jumpTo: (move: number) => void;
 }
 export const GameHistory: React.FC<GameHistoryProps> = (props: GameHistoryProps) => {
-    const moves = props.moves.map((step, move) => {
+
+    const state = useSelector((state: RootState) => state.game)
+
+    const dispatch = useDispatch();
+
+    const { jumpTo } = bindActionCreators(actionCreators, dispatch)
+
+    const moves = state.history.map((step, move) => {
         const desc = move ?
             'Go to move #' + move :
             'Go to game start';
         return (
             <li key={move}>
-                <button onClick={() => props.jumpTo(move)}>{desc}</button>
+                <button onClick={() => jumpTo(move)}>{desc}</button>
             </li>
         );
     });
