@@ -1,36 +1,29 @@
 import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
-import { Dispatch } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import './Game.css';
-import SquareValue from './SquareValue';
-import { clickSquare } from './state/action-creators';
+import { actionCreators } from './state';
 import { RootState } from './state/reducers';
 
-interface SquareProps extends PropsFromRedux {
+interface SquareProps {
     index: number
 }
 
-interface SquareStateProps {
-    board: SquareValue[]
-}
+const Square: React.FC<SquareProps> = (props: SquareProps) => {
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    clickSquare: (index: number) => clickSquare(index)(dispatch)
-});
+    const state = useSelector((state: RootState) => state.game)
 
-const mapStateToProps = (state: RootState): SquareStateProps => { return { board: state.game.current.board } };
-const connector = connect(mapStateToProps, mapDispatchToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
+    const dispatch = useDispatch();
 
-const Square: React.FC<SquareProps> = ({ clickSquare, index, board }) => {
+    const { clickSquare } = bindActionCreators(actionCreators, dispatch)
 
     return (
         <button
             className="square"
-            onClick={() => clickSquare(index)}>
-            {board[index]}
+            onClick={() => clickSquare(props.index)}>
+            {state.current.board[props.index]}
         </button>
     );
 }
 
-export default connector(Square);
+export default Square;
