@@ -1,7 +1,7 @@
 import Player from './Player';
 import SquareValue from './SquareValue';
 
-export function calculateWinner(squares: SquareValue[]): Player | null {
+export default function calculateWinner(squares: SquareValue[]): Player | null {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],

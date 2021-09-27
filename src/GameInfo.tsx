@@ -1,6 +1,6 @@
 import React from 'react';
 import { GameSatus } from './GameStatus';
-import { Move } from './Game';
+import Move from "./Move";
 import { GameHistory } from './GameHistory';
 
 interface GameInfoProps {

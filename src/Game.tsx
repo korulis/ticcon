@@ -1,8 +1,9 @@
 import React from 'react';
 import Board from './Board';
-import { calculateWinner } from './calculateWinner';
+import calculateWinner from './calculateWinner';
 import './Game.css';
 import { GameInfo } from './GameInfo';
+import Move from './Move';
 import SquareValue from './SquareValue';
 
 interface GameState {
@@ -68,8 +69,5 @@ class Game extends React.Component<unknown, GameState> {
         );
     }
 }
-
-export type Move = { squares: Array<SquareValue> }
-
 
 export default Game;

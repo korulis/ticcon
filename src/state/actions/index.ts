@@ -1,9 +1,16 @@
-import { BankActionType,SquareActionType } from "../action-types/index"
+import { BankActionType,GameActionType } from "../action-types/index"
 
-export type SquareAction = {
-    type: SquareActionType.CLICK,
+type SquareAction = {
+    type: GameActionType.SQUARE_CLICK,
     index: number
 };
+
+type MoveHistoryAction = {
+    type: GameActionType.MOVE_CLICK,
+    index: number
+}
+
+export type GameAction = SquareAction | MoveHistoryAction
 
 interface DepositAction {
     type: BankActionType.DEPOSIT,

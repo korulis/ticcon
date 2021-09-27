@@ -4,6 +4,7 @@ export enum BankActionType {
     BANKRUPT = "bankrupt"
 }
 
-export enum SquareActionType {
-    CLICK = "SQUARE_CLICK"
+export enum GameActionType {
+    SQUARE_CLICK = "SQUARE_CLICK",
+    MOVE_CLICK = "MOVE_CLICK"
 }

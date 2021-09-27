@@ -1,11 +1,11 @@
 import { Dispatch } from "redux"
-import { BankActionType, SquareActionType } from "../action-types"
-import { BankAction, SquareAction } from "../actions/index"
+import { BankActionType, GameActionType } from "../action-types"
+import { BankAction, GameAction,  } from "../actions/index"
 
 export const clickSquare = (index: number) => {
-    return (dispatch: Dispatch<SquareAction>): void => {
+    return (dispatch: Dispatch<GameAction>): void => {
         dispatch({
-            type: SquareActionType.CLICK, index: index
+            type: GameActionType.SQUARE_CLICK, index: index
         })
     }
 }

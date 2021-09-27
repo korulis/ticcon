@@ -1,5 +1,5 @@
 import React from 'react';
-import { Move } from './Game';
+import Move from "./Move";
 
 interface GameHistoryProps {
     moves: Move[];
