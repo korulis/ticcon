@@ -1,18 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useSelector } from 'react-redux';
 import './Game.css';
-import { actionCreators } from './state';
 import { RootState } from './state/reducers';
 
-interface GameStatusProps {
-    status: string;
-}
-export const GameSatus: React.FC<GameStatusProps> = (props: GameStatusProps) => {
-
+export const GameSatus: React.FC = () => {
 
     const state = useSelector((state: RootState) => state.game)
-
     
     let statusText;
     if (state.winner) {

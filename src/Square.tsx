@@ -21,7 +21,7 @@ const Square: React.FC<SquareProps> = (props: SquareProps) => {
         <button
             className="square"
             onClick={() => clickSquare(props.index)}>
-            {state.squareValues[props.index]}
+            {state.board[props.index]}
         </button>
     );
 }

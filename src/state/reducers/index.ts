@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import bankReducer from "./bankReducer"
-import currentStateReducer from "./currentStateReducer";
+import gameReducer from "./gameReducer";
 
 
 const reducers = combineReducers({
     bank: bankReducer,
-    game: currentStateReducer,
+    game: gameReducer,
 })
 
 export default reducers
