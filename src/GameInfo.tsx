@@ -1,20 +1,13 @@
 import React from 'react';
-import { GameSatus } from './GameStatus';
-import Move from "./Move";
+import { GameSatus as GameStatus } from './GameStatus';
 import { GameHistory } from './GameHistory';
-import calculateWinner from './calculateWinner';
 
-interface GameInfoProps {
-    history: Move[],
-    jumpTo: (move: number) => void,
-}
-
-export const GameInfo: React.FC<GameInfoProps> = (props: GameInfoProps) => {
+export const GameInfo: React.FC = () => {
 
     return (
         <div className="game-info">
-            <GameSatus />
-            <GameHistory jumpTo={props.jumpTo} history={props.history} />
+            <GameStatus />
+            <GameHistory />
         </div>
     );
 };

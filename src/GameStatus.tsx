@@ -2,12 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import calculateWinner from './calculateWinner';
 import './Game.css';
-import Player from './Player';
 import { RootState } from './state/reducers';
-
-interface GameStatusProps {
-    winner: Player | null;
-}
 
 export const GameSatus: React.FC = () => {
 

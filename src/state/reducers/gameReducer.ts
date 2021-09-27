@@ -32,12 +32,17 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
             const oldBoard = state.current.board;
             const oldWinner = state.current.winner;
             if (oldBoard[i] === null && !oldWinner) {
+                const newBoard: SquareValue[] = [...oldBoard.slice(0, i), state.current.nextPlayer, ...oldBoard.slice(i + 1)];
                 const newStepNumber = state.current.stepNumber + 1;
-                const newSquare = state.current.nextPlayer;
-                const newBoard: SquareValue[] = [...oldBoard.slice(0, i), newSquare, ...oldBoard.slice(i + 1)];
                 const newNextPlayer: Player = state.current.nextPlayer == 'X' ? 'O' : 'X'
                 const newWinner = calculateWinner(newBoard)
-                const newCurrent: Move = { board: newBoard, winner: newWinner, stepNumber: newStepNumber, nextPlayer: newNextPlayer }
+
+                const newCurrent: Move = { 
+                    board: newBoard, 
+                    winner: newWinner, 
+                    stepNumber: newStepNumber, 
+                    nextPlayer: newNextPlayer }
+
                 const newHistory: History = cloneDeep(state.history.slice(0, newStepNumber).concat(newCurrent))
                 const newState: GameState = {
                     ...state,
