@@ -1,14 +1,29 @@
 import axios from "axios"
 import { Dispatch } from "redux"
 import GameState from "../../GameState"
+import Move from "../../Move"
 import { GameActionType } from "../action-types"
 import { GameAction, } from "../actions/index"
 
-export const clickSquare = (squareIndex: number) => {
-    return (dispatch: Dispatch<GameAction>): void => {
+export const clickSquare = (newMove: Move) => {
+    return async (dispatch: Dispatch<GameAction>): Promise<string> => {
         dispatch({
-            type: GameActionType.SQUARE_CLICK, squareIndex: squareIndex
+            type: GameActionType.SQUARE_CLICK, newMove: newMove
         })
+
+        // try {
+        //     const payload = await axios.post<Move,{ state: GameState | null }>("http://localhost:5000/game-state",)
+        //     console.log(payload.data)
+        //     dispatch({
+        //         type: GameActionType.LOAD_STATE, loadedState: payload.data.state
+        //     })
+        // } catch (error) {
+        //     if (axios.isAxiosError(error)) {
+        //         // show widget
+        //     } 
+        //     throw error;
+        // }
+        return "OK";
     }
 }
 
@@ -19,11 +34,18 @@ export const loadState = () => {
             type: GameActionType.LOAD_STATE, loadedState: null
         })
 
-        const payload = await axios.get<{state:GameState | null}>("http://localhost:5000/game-state")
-        console.log(payload.data)
-        dispatch({
-            type: GameActionType.LOAD_STATE, loadedState: payload.data.state
-        })
+        try {
+            const payload = await axios.get<{ state: GameState | null }>("http://localhost:5000/game-state")
+            console.log(payload.data)
+            dispatch({
+                type: GameActionType.LOAD_STATE, loadedState: payload.data.state
+            })
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                // show widget
+            } 
+            throw error;
+        }
 
         return "OK";
     }
