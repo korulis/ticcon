@@ -5,13 +5,9 @@ import SquareValue from "../../SquareValue";
 import { GameActionType } from "../action-types";
 import { GameAction } from "../actions";
 import { cloneDeep } from "lodash";
+import GameState from "../../GameState";
 
-type History = Move[];
 
-interface GameState {
-    current: Move;
-    history: History;
-}
 
 const initialMove: Move = {
     board: Array<SquareValue>(9).fill(null),
@@ -19,11 +15,6 @@ const initialMove: Move = {
     winner: null,
     stepNumber: 0
 };
-
-// const initialState: GameState = {
-//     current: initialMove,
-//     history: [initialMove],
-// };
 
 const initialState: GameState = {
     current: initialMove,
@@ -42,13 +33,14 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
                 const newNextPlayer: Player = state.current.nextPlayer == 'X' ? 'O' : 'X'
                 const newWinner = calculateWinner(newBoard)
 
-                const newCurrent: Move = { 
-                    board: newBoard, 
-                    winner: newWinner, 
-                    stepNumber: newStepNumber, 
-                    nextPlayer: newNextPlayer }
+                const newCurrent: Move = {
+                    board: newBoard,
+                    winner: newWinner,
+                    stepNumber: newStepNumber,
+                    nextPlayer: newNextPlayer
+                }
 
-                const newHistory: History = cloneDeep(state.history.slice(0, newStepNumber).concat(newCurrent))
+                const newHistory: Move[] = cloneDeep(state.history.slice(0, newStepNumber).concat(newCurrent))
                 const newState: GameState = {
                     ...state,
                     current: newCurrent,
@@ -66,10 +58,18 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
             };
 
             return newState;
+        case GameActionType.LOAD_STATE:
+        if (action.loadedState === null) {
+                return initialState;
+            }
+            else {
+                return action.loadedState
+            }
         default:
             return state;
     }
 }
+
 
 export default gameReducer
 

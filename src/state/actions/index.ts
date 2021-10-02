@@ -1,3 +1,4 @@
+import GameState from "../../GameState";
 import { GameActionType } from "../action-types/index"
 
 type SquareAction = {
@@ -12,6 +13,7 @@ type MoveHistoryAction = {
 
 type LoadStateAction = {
     type: GameActionType.LOAD_STATE,
+    loadedState: GameState | null
 }
 
 export type GameAction = SquareAction | MoveHistoryAction | LoadStateAction
