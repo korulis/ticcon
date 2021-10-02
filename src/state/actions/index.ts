@@ -2,7 +2,7 @@ import { GameActionType } from "../action-types/index"
 
 type SquareAction = {
     type: GameActionType.SQUARE_CLICK,
-    index: number
+    squareIndex: number
 };
 
 type MoveHistoryAction = {
@@ -10,4 +10,8 @@ type MoveHistoryAction = {
     index: number
 }
 
-export type GameAction = SquareAction | MoveHistoryAction
+type LoadStateAction = {
+    type: GameActionType.LOAD_STATE,
+}
+
+export type GameAction = SquareAction | MoveHistoryAction | LoadStateAction

@@ -20,6 +20,11 @@ const initialMove: Move = {
     stepNumber: 0
 };
 
+// const initialState: GameState = {
+//     current: initialMove,
+//     history: [initialMove],
+// };
+
 const initialState: GameState = {
     current: initialMove,
     history: [initialMove],
@@ -28,7 +33,7 @@ const initialState: GameState = {
 const gameReducer = (state: GameState = initialState, action: GameAction): GameState => {
     switch (action.type) {
         case GameActionType.SQUARE_CLICK:
-            const i = action.index;
+            const i = action.squareIndex;
             const oldBoard = state.current.board;
             const oldWinner = state.current.winner;
             if (oldBoard[i] === null && !oldWinner) {
