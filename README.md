@@ -1,3 +1,4 @@
+
 # Ticcon
 
 - Have node and npm.
@@ -17,7 +18,7 @@ npx create-react-app ticcon --template typescript --use-npm
 
 - ~~Add typescript~~
 - ~~Add redux~~
-- Dockerise
+- ~~Dockerise~~
 - ~~REST requests~~
 - Use flexbox
 - Tests
