@@ -12,7 +12,8 @@ export const clickSquare = (newMove: Move) => {
         })
 
         try {
-            const payload = await axios.post<{ move: Move }, AxiosResponse<{ state: GameState | null }>>("http://localhost:5000/game-state", { move: newMove })
+            const payload = await axios.post<{ move: Move }, AxiosResponse<{ state: GameState | null }>>
+                (process.env.REACT_APP_WEB_API + "/game-state", { move: newMove })
 
             // console.log("New state:")
             // console.log(payload)
@@ -40,7 +41,7 @@ export const loadState = () => {
         })
 
         try {
-            const payload = await axios.get<{ state: GameState | null }>("http://localhost:5000/game-state")
+            const payload = await axios.get<{ state: GameState | null }>(process.env.REACT_APP_WEB_API + "/game-state")
             console.log(payload.data)
             dispatch({
                 type: GameActionType.LOAD_STATE, loadedState: payload.data.state
