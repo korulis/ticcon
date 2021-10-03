@@ -12,11 +12,11 @@ export const clickSquare = (newMove: Move) => {
         })
 
         try {
-            const payload = await axios.post<{ move: Move },AxiosResponse<{ state: GameState | null }>>("http://localhost:5000/game-state", { move: newMove })
+            const payload = await axios.post<{ move: Move }, AxiosResponse<{ state: GameState | null }>>("http://localhost:5000/game-state", { move: newMove })
 
             // console.log("New state:")
             // console.log(payload)
-            if(payload.data != null){
+            if (payload.data != null) {
                 dispatch({
                     type: GameActionType.LOAD_STATE, loadedState: payload.data.state
                 })
