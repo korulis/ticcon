@@ -3,14 +3,16 @@ import SquareValue from "../../SquareValue";
 import { GameActionType } from "../action-types";
 import { GameAction } from "../actions";
 import GameState from "../../GameState";
-
+import { v1 as uuid } from 'uuid';
 
 
 const initialMove: Move = {
     board: Array<SquareValue>(9).fill(null),
     nextPlayer: 'X',
     winner: null,
-    stepNumber: 0
+    stepNumber: 0,
+    reference: uuid(),
+    previousMove: null
 };
 
 const initialState: GameState = {

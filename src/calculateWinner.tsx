@@ -20,3 +20,4 @@ export default function calculateWinner(squares: SquareValue[]): Player | null {
     }
     return null;
 }
+

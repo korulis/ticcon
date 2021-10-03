@@ -6,6 +6,8 @@ type Move = {
     winner: Player | null;
     nextPlayer: Player;
     stepNumber: number;
+    reference: string;
+    previousMove : string | null;
 };
 
 export default Move

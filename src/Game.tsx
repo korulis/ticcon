@@ -8,6 +8,7 @@ import { actionCreators } from './state';
 
 const Game: React.FC = () => {
 
+    //todo kb: try loading initial state on createStore instead.
     const dispatch = useDispatch();
     const { loadState } = bindActionCreators(actionCreators, dispatch)
     loadState()
