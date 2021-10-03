@@ -21,11 +21,11 @@ npx create-react-app ticcon --template typescript --use-npm
 - ~~Add redux~~
 - ~~Dockerise~~
 - ~~REST requests~~
-- Use flexbox
-- Tests
+- ~~Use flexbox?~~
+- ~~Tests~~
 
 ## Nice to have
 
 - Ability to recognize draw early
-- Add submodules
+- ~~Add submodules~~
 - Multiple sessions
