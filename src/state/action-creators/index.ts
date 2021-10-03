@@ -13,7 +13,7 @@ export const clickSquare = (newMove: Move) => {
 
         try {
             const payload = await axios.post<{ move: Move }, AxiosResponse<{ state: GameState | null }>>
-                (process.env.REACT_APP_WEB_API + "/game-state", { move: newMove })
+                (process.env.REACT_APP_WEB_API + "/move", { move: newMove })
 
             // console.log("New state:")
             // console.log(payload)
