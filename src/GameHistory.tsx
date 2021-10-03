@@ -13,13 +13,13 @@ export const GameHistory: React.FC = () => {
 
     const { jumpTo } = bindActionCreators(actionCreators, dispatch)
 
-    const moves = state.history.map((step, move) => {
-        const desc = move ?
-            'Go to move #' + move :
+    const moves = state.history.map((move, step) => {
+        const desc = step ?
+            'Go to move #' + step :
             'Go to game start';
         return (
-            <li key={move}>
-                <button onClick={() => jumpTo(move)}>{desc}</button>
+            <li key={step}>
+                <button onClick={() => jumpTo(step)}>{desc}</button>
             </li>
         );
     });
