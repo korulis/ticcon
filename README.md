@@ -5,6 +5,7 @@
 - Can work without api running.
 - `npm install`
 - `npm start`
+- Run tests `npm test`
 
 - Generated using:
 
