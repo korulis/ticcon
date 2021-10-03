@@ -3,7 +3,7 @@ import SquareValue from "../../SquareValue";
 import { GameActionType } from "../action-types";
 import { GameAction } from "../actions";
 import GameState from "../../GameState";
-import { v1 as uuid } from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 
 const initialMove: Move = {
