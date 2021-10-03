@@ -19,7 +19,7 @@ export const GameHistory: React.FC = () => {
             'Go to game start';
         return (
             <li key={step}>
-                <button onClick={() => jumpTo(step)}>{desc}</button>
+                <button className="history-element" onClick={() => jumpTo(step)}>{desc}</button>
             </li>
         );
     });
